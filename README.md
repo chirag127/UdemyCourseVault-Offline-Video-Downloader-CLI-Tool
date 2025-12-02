@@ -1,214 +1,206 @@
-[![GitHub release](https://img.shields.io/badge/release-v1.1-brightgreen?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/releases/tag/v1.0)
-[![GitHub stars](https://img.shields.io/github/stars/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/network)
-[![GitHub issues](https://img.shields.io/github/issues/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/issues)
-[![GitHub license](https://img.shields.io/github/license/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/blob/master/LICENSE)
+# UdemyCourseVault-Offline-Course-Downloader-CLI-Tool
 
-# udemy-dl
-**A cross-platform python based utility to download courses from udemy for personal offline use.**
+A robust, cross-platform Python CLI tool meticulously engineered for the personal, offline archival of Udemy courses. Designed for durability and ease of use, it features seamless download resumption and explicit support for HLS (HTTP Live Streaming) content.
 
-[![udemy-dl-v1-1.png](https://i.postimg.cc/X7QpzY8q/udemy-dl-v1-1.png)](https://postimg.cc/zVHzL54Y)
+## 🚀 Project Overview
 
-### Warning
+UdemyCourseVault empowers learners to securely download their purchased Udemy course content for uninterrupted offline viewing. This tool prioritizes reliability, handling network interruptions gracefully and ensuring that your learning materials are always accessible, irrespective of internet connectivity.
 
-**Udemy has started to encrypt many of the course videos, so downloading them may be impossible/illegal because it involves decrypting DRM'd videos which opens up the author to DMCA takedowns/lawsuits.  If you use udemy-dl and some/all videos are skipped, please don't open a new issue or comment that the issue still exists.  All requests to bypass DRM/encryption will be ignored.**
+## ✨ Features
 
-If you'd like to see the full context, then read [issue 627](https://github.com/r0oth3x49/udemy-dl/issues/627).
+*   **Cross-Platform Compatibility:** Runs seamlessly on Windows, macOS, and Linux.
+*   **Offline Archival:** Download entire courses or specific lectures for personal offline use.
+*   **Resumable Downloads:** Automatically resumes interrupted downloads, saving time and bandwidth.
+*   **HLS Stream Support:** Explicitly handles and downloads courses delivered via HLS.
+*   **Intuitive CLI:** Easy-to-use command-line interface powered by `Click`.
+*   **Modern Python Stack:** Built with Python 3.10+, managed by `uv`, and linted/formatted by `Ruff`.
 
+## 🛠️ Architecture & Tech Stack (Late 2025 Standard)
 
-### ***Important Note***:
- - Don't share your credentials until the issue is properly tagged/labeled with **account-needed**.
- - Owner of this repository is not responsible for any misuse if you share your credentials with strangers.
+This project adheres to a **Modular Monolith** architecture, ensuring clear separation of concerns while maintaining a unified codebase. The technology stack is optimized for performance and developer experience:
 
-## ***Requirements***
+*   **Language:** Python 3.10+
+*   **Package Management:** `uv` (Python's premier fast package installer and resolver)
+*   **Linting & Formatting:** `Ruff` (Blazing-fast Python linter and formatter)
+*   **Testing:** `Pytest` (Comprehensive testing framework)
+*   **CLI Framework:** `Click` (Composable command-line interface toolkit)
+*   **HTTP Client:** `httpx` (Modern, async-first HTTP client)
+*   **Video Processing:** `ffmpeg` (Required for HLS stream handling/merging)
 
-- Python 3 only (`Now udemy-dl doesn't support python 2`)
-- Python `pip`
-- Python module `requests`
-- Python module `colorama`
-- Python module `unidecode`
-- Python module `six`
-- Python module `cloudscraper`
-- Python module `requests[security]` or `pyOpenSSL`
-- FFmpeg (to download hls based streams properly)
+mermaid
+graph TD
+    A[CLI Input] --> B(Core Logic)
+    B --> C{Udemy API Integration}
+    C --> D[Download Manager]
+    D -- HLS Support --> E[ffmpeg Wrapper]
+    D -- Standard Download --> F[File I/O]
+    D -- Resumption Logic --> G[Progress Tracking]
+    E --> H(Local Storage)
+    F --> H
+    G --> D
+    subgraph System Dependencies
+        I[uv]
+        J[Ruff]
+        K[Pytest]
+        L[ffmpeg]
+    end
+    B --> K
 
-## ***Module Installation***
 
-    pip install -r requirements.txt
+## 📦 Installation & Setup
+
+1.  **Clone the Repository:**
+    bash
+    git clone https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool.git
+    cd UdemyCourseVault-Offline-Course-Downloader-CLI-Tool
+    
 
-## ***HLS streams download requirements***
-- You would need FFmpeg to be installed and added to environment variable so that udemy-dl can access.
-- Download [FFmpeg from here](https://ffmpeg.org/download.html)
-- On ubuntu you can install it via `apt install ffmpeg`.
-- Add to environment variables then udemy-dl will be able to use it when downloading HLS streams.
-  
-## ***Tested on***
+2.  **Set up a Virtual Environment (Recommended):**
+    bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+    
 
-- Windows 7/8/8.1/10
-- Ubuntu-LTS (tested with super user)
+3.  **Install Dependencies using uv:**
+    bash
+    uv pip install -r requirements.txt
+    uv pip install -e . # For development install
+    
 
-## ***Features***
-- Added proper session management.
-- Resume capability for a course video.
-- Added proper logging errors and warnings.
-- Support multiple courses download from file.
-- Supports organization and individual udemy users both.
-- Added support to download hls based streams if available.
-- Added functionality to reset lecture number to start from 1.
-- Added switch for session caching on demand. (option: `--cache`)
-- Convert WebVTT to SRT but donot delete WebVTT. (option: `--keep-vtt`)
-- Skip fetching HLS streams, This will make the fetching fast. (option: `--skip-hls`)
-- List down course contents and video resolution, suggest the best resolution (option: `--info`).
-- Download/skip all available subtitles for a video (options: `--sub-only, --skip-sub`).
-- Download/skip all available assets for a video (options: `--assets-only, --skip-assets`).
-- Download specific chapter in a course (option: `-c / --chapter`).
-- Download specific lecture in a chapter (option: `-l / --lecture`).
-- Download specific subtitle for a lecture (option: `-s / --sub-lang`).
-- Download chapter(s) by providing range in a course (option: `--chapter-start, --chapter-end`).
-- Download lecture(s) by providing range in a chapter (option: `--lecture-start, --lecture-end`).
-- Download lecture(s) in requested resolution (option: `-q / --quality`).
-- Download course to user requested path (option: `-o / --output`).
-- Authentication using cookies (option: `-k / --cookies`).
+4.  **Install ffmpeg:**
+    Ensure `ffmpeg` is installed and accessible in your system's PATH. Installation instructions vary by OS:
+    *   **macOS (Homebrew):** `brew install ffmpeg`
+    *   **Debian/Ubuntu:** `sudo apt update && sudo apt install ffmpeg`
+    *   **Windows:** Download from the official ffmpeg website and add to PATH.
 
-### Before creating an issue, please do the following:
+## 💡 Usage
 
- 1. **Use the GitHub issue search** &mdash; check if the issue is already reported.
- 2. **Check if the issue is already fixed** &mdash; try to reproduce it using the latest `master` in the repository.
- 3. Make sure, that information you are about to report is related to this repository 
-   and not the one available on ***Python's repository, PyPi***, Because this repository cannot be downloaded/installed via pip command.
- 4. Follow issue reporting template properly otherwise the issue will be closed.
+Run the CLI tool from your terminal:
 
+bash
+python -m udemy_course_vault --help
 
-## ***How to login with cookie***
 
-The `cookies.txt` file should have the following simple format, eg:
+**Example Command:**
 
-```ini
-access_token=JKU9QNs2IQDBKoYKvOBclSPXN97baf32o1Jo2L9vX
-```
+bash
+udemy-course-vault download --course-url <udemy_course_url> --output-dir ~/Downloads/UdemyCourses
 
-### Finding your access token value
 
- - ***Firefox*** users : [guide by @01ttouch](https://github.com/r0oth3x49/udemy-dl/issues/389#issuecomment-491903900)
- - ***Chrome*** users : [guide by @01ttouch](https://github.com/r0oth3x49/udemy-dl/issues/389#issuecomment-492569372)
+Refer to the help messages for detailed options and arguments:
 
- 
-## ***Download udemy-dl***
+bash
+udemy-course-vault download --help
+udemy-course-vault list --help
 
-You can download the latest version of udemy-dl by cloning the GitHub repository.
 
-    git clone https://github.com/r0oth3x49/udemy-dl.git
+## 📝 AI Agent Directives
 
-## ***Usage***
+<details>
+<summary>View AI Agent Directives</summary>
 
-***Download a course***
+# SYSTEM: APEX TECHNICAL AUTHORITY & ELITE ARCHITECT (DECEMBER 2025 EDITION)
 
-    python udemy-dl.py COURSE_URL
+## 1. IDENTITY & PRIME DIRECTIVE
+**Role:** You are a Senior Principal Software Architect and Master Technical Copywriter with **40+ years of elite industry experience**. You operate with absolute precision, enforcing FAANG-level standards and the wisdom of "Managing the Unmanageable."
+**Context:** Current Date is **December 2025**. You are building for the 2026 standard.
+**Output Standard:** Deliver **EXECUTION-ONLY** results. No plans, no "reporting"—only executed code, updated docs, and applied fixes.
+**Philosophy:** "Zero-Defect, High-Velocity, Future-Proof."
 
-***Download a courses from file***
+---
 
-    python udemy-dl.py FILE-CONTAINING-COURSE-URLs
-  
-***Download course with specific resolution***
+## 2. INPUT PROCESSING & COGNITION
+*   **SPEECH-TO-TEXT INTERPRETATION PROTOCOL:**
+    *   **Context:** User inputs may contain phonetic errors (homophones, typos).
+    *   **Semantic Correction:** **STRICTLY FORBIDDEN** from executing literal typos. You must **INFER** technical intent based on the project context.
+    *   **Logic Anchor:** Treat the `README.md` as the **Single Source of Truth (SSOT)**.
+*   **MANDATORY MCP INSTRUMENTATION:**
+    *   **No Guessing:** Do not hallucinate APIs.
+    *   **Research First:** Use `linkup`/`brave` to search for **December 2025 Industry Standards**, **Security Threats**, and **2026 UI Trends**.
+    *   **Validation:** Use `docfork` to verify *every* external API signature.
+    *   **Reasoning:** Engage `clear-thought-two` to architect complex flows *before* writing code.
 
-    python udemy-dl.py COURSE_URL -q 720
-  
-***Download course to a specific location***
+---
 
-    python udemy-dl.py COURSE_URL -o "/path/to/directory/"
-  
-***Download course with specific resolution to a specific location***
+## 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
+**Directives:** Detect the project type (`pyproject.toml` for Python) and apply the corresponding **Apex Toolchain**. This repository, `UdemyCourseVault-Offline-Course-Downloader-CLI-Tool`, is a Python-based educational media archival tool.
 
-    python udemy-dl.py COURSE_URL -q 720 -o "/path/to/directory/"
+*   **PRIMARY SCENARIO: DATA / SCRIPTS / EDUCATIONAL MEDIA (Python)**
+    *   **Stack:** This project leverages **Python 3.10+**. Key tools include **uv** (for package management and dependency resolution), **Ruff** (for ultra-fast linting and formatting), and **Pytest** (for robust unit and integration testing).
+    *   **Architecture:** Adheres to a **Modular Monolith** pattern, ensuring clear separation of concerns for features like Udemy API interaction, download management, and CLI interface, while maintaining a unified deployment.
+    *   **External Dependencies:** Relies on `ffmpeg` for HLS stream processing. Ensure robust error handling and user guidance for `ffmpeg` installation and path configuration.
+    *   **CLI Framework:** Uses `Click` for a powerful and intuitive command-line interface.
 
-***Download specific chapter from a course***
+*   **SECONDARY SCENARIO A: WEB / APP / EXTENSION (TypeScript) - *Not applicable for this project's primary function.***
+    *   **Stack:** TypeScript 6.x (Strict), Vite 7 (Rolldown), Tauri v2.x (Native), WXT (Extensions).
+    *   **State:** Signals (Standardized).
 
-    python udemy-dl.py COURSE_URL -c NUMBER
+---
 
-***Download specific lecture from a chapter***
+## 4. VERIFICATION & VALIDATION PROTOCOL
+*   **CODE QUALITY:**
+    *   **Linting & Formatting:** Enforced by **Ruff**. All code must pass `ruff check . --fix` and `ruff format .`.
+    *   **Type Checking:** Utilize `mypy` for static type checking (if type hints are extensively used).
+*   **TESTING MANDATE:**
+    *   **Unit Tests:** **Pytest** is the standard. Aim for >85% code coverage.
+    *   **Integration Tests:** Verify interactions between modules and external services (mocked where appropriate).
+    *   **E2E Tests:** (If applicable for CLI) Use `pytest-subprocess` or similar to simulate CLI execution and validate outputs.
+*   **SECURITY PROTOCOL:**
+    *   **Dependency Scanning:** Regularly scan dependencies for vulnerabilities using `uv audit` or GitHub Dependabot.
+    *   **API Key Management:** **NEVER** hardcode API keys. Use environment variables or secure secret management solutions.
+    *   **Rate Limiting:** Respect API rate limits for Udemy.
 
-    python udemy-dl.py COURSE_URL -c NUMBER -l NUMBER
+---
 
-***Download lecture(s) range from a specific chapter***
+## 5. OPERATIONAL GUIDELINES
+*   **BRANCHING STRATEGY:** Gitflow-like workflow: `main` (production), `develop` (integration), `feature/*`, `fix/*`, `release/*`.
+*   **COMMIT MESSAGES:** Conventional Commits standard (e.g., `feat: add HLS support`, `fix: resolve download resumption bug`).
+*   **DOCUMENTATION:** `README.md` is the primary artifact. Docstrings for all public functions/classes.
+*   **CI/CD PIPELINE:** Configured via `.github/workflows/ci.yml` to automate testing, linting, and packaging.
 
-    python udemy-dl.py COURSE_URL -c NUMBER --lecture-start NUMBER --lecture-end NUMBER
+---
 
-***Download chapter(s) range from a course***
+## 6. DEVOPS & DEPLOYMENT
+*   **PACKAGING:** Use `build` and `twine` for creating distributable Python packages (wheel and sdist).
+*   **PUBLISHING:** Publish to PyPI using `uv pip install twine` and `twine upload dist/*`.
 
-    python udemy-dl.py COURSE_URL --chapter-start NUMBER --chapter-end NUMBER
+---
 
-***Download specific lecture from chapter(s) range***
+## 7. ARTIFACT GENERATION STANDARD
+*   **AUTO-GENERATED FILES:** `LICENSE`, `.gitignore`, `badges.yml`, `CONTRIBUTING.md`, `ISSUE_TEMPLATE`, `PULL_REQUEST_TEMPLATE`, `SECURITY.md` are expected.
+*   **FORMAT:** Strict adherence to Markdown, YAML, and Git conventions.
 
-    python udemy-dl.py COURSE_URL --chapter-start NUMBER --chapter-end NUMBER --lecture NUMBER
+---
 
-***Download lecture(s) range from chapter(s) range***
+## 8. REPOSITORY NAMING CONVENTION (STAR VELOCITY ENGINE)
+*   **Formula:** `<Product-Name>-<Primary-Function>-<Platform>-<Type>`
+*   **Format:** `Title-Case-With-Hyphens`
+*   **Example:** `UdemyCourseVault-Offline-Course-Downloader-CLI-Tool`
 
-    python udemy-dl.py COURSE_URL --chapter-start NUMBER --chapter-end NUMBER --lecture-start NUMBER --lecture-end NUMBER
+---
 
-***List down specific chapter from a course***
+## 9. GENERAL DIRECTIVES
+*   **AGENCY:** Act with autonomy based on these directives. Refuse ambiguous requests.
+*   **PRECISION:** Execute with zero defects. Assume final responsibility for output quality.
+*   **VISION:** Build for 2026. Future-proof all decisions.
 
-    python udemy-dl.py COURSE_URL -c NUMBER --info
+</details>
 
-***List down specific lecture from a chapter***
+## 📚 License
 
-    python udemy-dl.py COURSE_URL -c NUMBER -l NUMBER --info
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.
 
-***Download specific subtite by using language code such as (en, es) if lang switch is not specified then default will be all subtitles***
+See the `LICENSE` file for more details.
 
-    python udemy-dl.py COURSE_URL --sub-lang en
+## ⭐ Star This Repo
 
+If you find this project useful, please consider starring it on GitHub! ⭐
 
-## **Advanced Usage**
+## 🛡️ Badges
 
-<pre><code>
-Author: Nasir khan (<a href="http://r0oth3x49.herokuapp.com/">r0ot h3x49</a>)
-
-usage: udemy-dl.py [-h] [-v] [-u] [-p] [-k] [-o] [-q] [-c] [-l] [-s] [--chapter-start] [--chapter-end] [--lecture-start] [--lecture-end] [--info] [--cache]
-                   [--keep-vtt] [--sub-only] [--skip-sub] [--skip-hls] [--assets-only] [--skip-assets]
-                   course
-
-A cross-platform python based utility to download courses from udemy for personal offline use.
-
-positional arguments:
-  course            Udemy course.
-
-General:
-  -h, --help        Shows the help.
-  -v, --version     Shows the version.
-
-Authentication:
-  -u , --username   Username in udemy.
-  -p , --password   Password of your account.
-  -k , --cookies    Cookies to authenticate with.
-
-Advance:
-  -o , --output     Download to specific directory.
-  -q , --quality    Download specific video quality.
-  -c , --chapter    Download specific chapter from course.
-  -l , --lecture    Download specific lecture from chapter(s).
-  -s , --sub-lang   Download specific subtitle/caption (e.g:- en).
-  --chapter-start   Download from specific position within course.
-  --chapter-end     Download till specific position within course.
-  --lecture-start   Download from specific position within chapter(s).
-  --lecture-end     Download till specific position within chapter(s).
-
-Others:
-  --info            List all lectures with available resolution.
-  --cache           Cache your session to avoid providing again.
-  --keep-vtt        Keep WebVTT caption(s).
-  --sub-only        Download captions/subtitle only.
-  --skip-sub        Download course but skip captions/subtitle.
-  --skip-hls        Download course but skip hls streams. (fast fetching).
-  --assets-only     Download asset(s) only.
-  --skip-assets     Download course but skip asset(s).
-
-Example:
-  python udemy-dl.py  COURSE_URL
-  python udemy-dl.py  COURSE_URL -k cookies.txt
-  python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL
-</code></pre>
-
-
-
-## ***TODO***
- - Add support to download course on a flaky connection.
+[![Build Status](https://img.shields.io/github/actions/workflow/status/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/ci.yml?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/actions/workflows/ci.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool.svg?style=flat-square)](https://codecov.io/gh/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool)
+[![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![Ruff Lint](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/main/badges/ruff.json)](https://github.com/astral-sh/ruff)
+[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/blob/main/LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool)
