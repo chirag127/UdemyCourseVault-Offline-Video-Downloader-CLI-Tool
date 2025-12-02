@@ -1,9 +1,3 @@
-cookies.txt
-new_cook.txt
-new_cookies.txt
-.udemy-dl*.conf
-pack.sublime-project
-pack.sublime-workspace
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -14,21 +8,14 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
-develop-eggs/
 dist/
 downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
+develop-eggs/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -43,13 +30,13 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+.nox/
 .coverage
 .coverage.*
 .cache
-nosetests.xml
-coverage.xml
-*,cover
+.pytest_cache/
 .hypothesis/
+pytestdebug.log
 
 # Translations
 *.mo
@@ -58,6 +45,8 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
+db.sqlite3
+db.sqlite3-journal
 
 # Flask stuff:
 instance/
@@ -72,30 +61,55 @@ docs/_build/
 # PyBuilder
 target/
 
-# IPython Notebook
+# Jupyter Notebook
 .ipynb_checkpoints
+profile_default/
+ipython_config.py
 
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# dotenv
+# Environments
 .env
-
-# virtualenv
-.venv/
+.venv
+env/
 venv/
 ENV/
-bin/
-include/
-pip-selfcheck.json
+env.bak
+venv.bak
 
-# Spyder project settings
-.spyderproject
+# uv cache
+.uv_cache/
 
-# Rope project settings
-.ropeproject
-*.json
+# Ruff cache
+.ruff_cache/
+
+# mypy cache
+.mypy_cache/
+
+# IDE / Editor configuration
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+Thumbs.db
+ehthumbs.db
+
+# Secrets and credentials - NEVER COMMIT THESE
+credentials.json
+secrets.yml
+*.ini
+
+# Downloaded course content (specific to this project)
+courses/
+*.mp4
+*.vtt
+*.srt
+*.pdf
 *.txt
