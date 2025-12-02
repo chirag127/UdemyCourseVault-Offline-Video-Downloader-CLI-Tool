@@ -1,27 +1,47 @@
----
-name: Bug report
-about: Create a report to help us improve
+# Bug Report
 
----
+Thank you for reporting a bug! Please fill out this form as completely as possible. This will help us understand and fix the issue quickly.
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## 1. Summary
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. udemy course url: [e.g `https://www.udemy.com/machinelearning/`] '...'
-2. Run the following command to reproduce the error.
-3. See error
+A concise, descriptive title for the bug.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## 2. Environment
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+*   **Operating System:** (e.g., Windows 11, macOS Sonoma 14.2, Ubuntu 22.04)
+*   **Python Version:** (Run `python --version`)
+*   **UdemyCourseVault Version:** (Run `udemy-course-vault --version` or check `pyproject.toml`)
+*   **Other Relevant Details:** (e.g., specific Udemy course page URL, browser used if relevant to interaction)
 
-**Python Environment (please complete the following information):**
- - OS Platform: [e.g. Windows 10, Ubuntu 16.04, macOS Sierra]
- - Python Version [e.g. 3.x.x]
+## 3. Steps to Reproduce
 
-**Additional context**
-Add any other context about the problem here.
+Please provide clear, step-by-step instructions to reproduce the bug. Be as specific as possible.
+
+1.  Go to...
+2.  Click on...
+3.  Enter...
+4.  Observe the error...
+
+## 4. Expected Behavior
+
+What did you expect to happen after performing the steps above?
+
+## 5. Actual Behavior
+
+What actually happened? Please include any error messages, stack traces, or unexpected output.
+
+
+[Paste any relevant logs or error messages here]
+
+
+## 6. Additional Information
+
+Any other context about the problem that might be helpful. Screenshots, specific course lecture names, or download patterns are welcome.
+
+## 7. AI Agent Directives Compliance
+
+*   **Repository:** `https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool`
+*   **Agent Standard:** Adhering to Apex Technical Authority & Elite Architect (December 2025 Edition).
+*   **Architecture:** Modular Monolith.
+*   **Tech Stack:** Python 3.10+, uv, Ruff, Pytest.
+*   **Verification:** Confirming all reported issues align with the established architectural patterns and toolchain standards.
