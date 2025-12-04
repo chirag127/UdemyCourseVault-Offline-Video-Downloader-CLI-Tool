@@ -2,45 +2,45 @@
 
 ## Supported Versions
 
-We actively support and patch security vulnerabilities in the latest stable version of `UdemyCourseVault-Offline-Course-Downloader-CLI-Tool`.
+We are committed to maintaining the security of the `UdemyCourseVault-Offline-Video-Downloader-CLI-Tool`. At this time, we are only actively supporting and patching the latest stable version. If you are using an older version, we strongly recommend upgrading.
 
-| Version | Supported          |
-|---------|--------------------|
-| Latest  | :white_check_mark: |
+| Version | Supported |
+| ------- | --------- |
+| Latest  | ✅        |
+| < Previous | ❌        |
 
 ## Reporting a Vulnerability
 
-We take security vulnerabilities very seriously. If you discover a security issue, please report it via one of the following channels:
+We take security vulnerabilities very seriously. If you discover a security issue, please report it to us using one of the following methods:
 
-*   **GitHub Security Advisory:** [https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/security/advisories](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/security/advisories)
-*   **Email:** Please email security@your-domain.com (replace with a real security contact if applicable, otherwise direct to GitHub).
+1.  **GitHub Security Advisory:** [https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/security/advisories](https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/security/advisories)
+2.  **Email:** Please send an email to `security@example.com` (replace with a real security contact if available). Please encrypt your findings using our [PGP key](link-to-pgp-key) if possible.
 
-Please do not disclose the vulnerability publicly until it has been addressed. We appreciate your responsible disclosure.
+We will acknowledge your report within **48 hours** and provide an estimate for a fix.
+
+Please do **NOT** disclose the vulnerability publicly until it has been addressed. We will work with you to coordinate a responsible disclosure timeline.
 
 ## Vulnerability Disclosure Policy
 
-When you report a vulnerability, we will:
+When you submit a vulnerability report, we will:
 
-1.  Acknowledge receipt of your report within **48 hours**.
-2.  Investigate the reported vulnerability thoroughly.
-3.  Provide regular updates on the status of the fix.
-4.  Once a fix is available and deployed, we will disclose the vulnerability details publicly, crediting the reporter.
+*   Acknowledge receipt of your report.
+*   Provide a timeline for investigation and remediation.
+*   Provide updates on our progress.
+*   Grant a **$100 bounty** for valid, previously undisclosed vulnerabilities that lead to a security fix (subject to severity and impact).
+*   Publicly acknowledge your contribution (with your permission).
 
-## Security Best Practices
+## Dependency Scanning
 
-*   **Dependency Management:** We use `uv` for dependency management and aim to keep all dependencies up-to-date to mitigate known vulnerabilities. Regularly run `uv sync` and `uv pip check`.
-*   **Code Review:** All code changes undergo rigorous review processes, including security considerations.
-*   **Static Analysis:** Tools like `Ruff` are employed to detect potential security flaws and code quality issues.
-*   **Testing:** Comprehensive test suites using `Pytest` are run to ensure code integrity and prevent regressions.
-*   **Input Validation:** All user inputs and external data are validated to prevent injection attacks or other vulnerabilities.
-*   **Secure API Usage:** When interacting with external services (like Udemy's backend, if applicable), we follow best practices for API key management and secure communication.
+We regularly scan our dependencies for known vulnerabilities using automated tools integrated into our CI/CD pipeline. The `uv` package manager, in conjunction with our CI, helps ensure that our Python dependencies are up-to-date and secure.
 
-## Python Security Considerations
+## Architecture & Design Principles
 
-As a Python project, we are mindful of common Python security risks:
+Our development follows established security best practices, including:
 
-*   **Dependency Confusion:** Mitigated by using pinned versions and potentially private package indexes if needed.
-*   **Deserialization Vulnerabilities:** Careful use of libraries like `pickle` or `json` with untrusted input.
-*   **Insecure `eval()` Usage:** Avoided in favor of safer alternatives.
+*   **Principle of Least Privilege:** Components operate with the minimum permissions necessary.
+*   **Input Validation:** All user inputs and external data are rigorously validated.
+*   **Secure Defaults:** The tool is configured with secure settings out-of-the-box.
+*   **Regular Audits:** Code undergoes regular security reviews and audits.
 
-We are committed to maintaining a secure and reliable tool for our users.
+Thank you for helping to keep this project secure!
