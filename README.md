@@ -1,115 +1,189 @@
-# UdemyCourseVault-Offline-Course-Downloader-CLI-Tool
+# UdemyCourseVault-Offline-Video-Downloader-CLI-Tool
 
-A robust, cross-platform Python CLI tool meticulously engineered for the personal, offline archival of Udemy courses. Designed for durability and ease of use, it features seamless download resumption and explicit support for HLS (HTTP Live Streaming) content.
+A cross-platform Python CLI tool for downloading Udemy courses for offline use. Supports HLS streams and resumable downloads.
 
-## 🚀 Project Overview
+[![Build Status](https://img.shields.io/github/actions/workflow/status/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/ci.yml?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/actions/workflows/ci.yml)
+[![Coverage Status](https://img.shields.io/codecov/c/github/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool?style=flat-square)](https://codecov.io/gh/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool)
+[![Language](https://img.shields.io/badge/Language-Python-blue?style=flat-square)](https://www.python.org/)
+[![Tech Stack](https://img.shields.io/badge/Stack-uv%2CRuff%2CPytest-informational?style=flat-square)](https://github.com/astral-sh/uv)
+[![Linting](https://img.shields.io/badge/Lint%2FFormat-Ruff-success?style=flat-square)](https://github.com/astral-sh/ruff)
+[![License](https://img.shields.io/github/license/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool?style=flat-square)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool)
 
-UdemyCourseVault empowers learners to securely download their purchased Udemy course content for uninterrupted offline viewing. This tool prioritizes reliability, handling network interruptions gracefully and ensuring that your learning materials are always accessible, irrespective of internet connectivity.
+---
 
-## ✨ Features
 
-*   **Cross-Platform Compatibility:** Runs seamlessly on Windows, macOS, and Linux.
-*   **Offline Archival:** Download entire courses or specific lectures for personal offline use.
-*   **Resumable Downloads:** Automatically resumes interrupted downloads, saving time and bandwidth.
-*   **HLS Stream Support:** Explicitly handles and downloads courses delivered via HLS.
-*   **Intuitive CLI:** Easy-to-use command-line interface powered by `Click`.
-*   **Modern Python Stack:** Built with Python 3.10+, managed by `uv`, and linted/formatted by `Ruff`.
+<p align="center">
+  <h1 align="center">Udemy Course Vault</h1>
+  <p align="center">
+    Empowering Udemy learners with the ability to download courses for truly offline, uninterrupted access.
+    <br />
+    <a href="https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/discussions">Request Feature</a>
+  </p>
+</p>
 
-## 🛠️ Architecture & Tech Stack (Late 2025 Standard)
+---
 
-This project adheres to a **Modular Monolith** architecture, ensuring clear separation of concerns while maintaining a unified codebase. The technology stack is optimized for performance and developer experience:
 
-*   **Language:** Python 3.10+
-*   **Package Management:** `uv` (Python's premier fast package installer and resolver)
-*   **Linting & Formatting:** `Ruff` (Blazing-fast Python linter and formatter)
-*   **Testing:** `Pytest` (Comprehensive testing framework)
-*   **CLI Framework:** `Click` (Composable command-line interface toolkit)
-*   **HTTP Client:** `httpx` (Modern, async-first HTTP client)
-*   **Video Processing:** `ffmpeg` (Required for HLS stream handling/merging)
+## Architecture Overview
+
+This project employs a **Modular Monolith** architecture, ensuring a cohesive yet maintainable structure. The core components interact seamlessly, providing a robust CLI experience.
 
 mermaid
 graph TD
-    A[CLI Input] --> B(Core Logic)
-    B --> C{Udemy API Integration}
-    C --> D[Download Manager]
-    D -- HLS Support --> E[ffmpeg Wrapper]
-    D -- Standard Download --> F[File I/O]
-    D -- Resumption Logic --> G[Progress Tracking]
-    E --> H(Local Storage)
-    F --> H
-    G --> D
-    subgraph System Dependencies
-        I[uv]
-        J[Ruff]
-        K[Pytest]
-        L[ffmpeg]
-    end
-    B --> K
+    A[CLI Interface] --> B(Course Downloader Logic)
+    B --> C{HLS Stream Handler}
+    B --> D{Resumable Download Manager}
+    D --> E(File System Operations)
+    C --> F(Video Segment Fetcher)
+    F --> B
+    B --> G(Udemy API Integration)
+    G --> A
 
 
-## 📦 Installation & Setup
+---
 
-1.  **Clone the Repository:**
+
+## Table of Contents
+
+*   [About the Project](#about-the-project)
+*   [Key Features](#key-features)
+*   [Technology Stack](#technology-stack)
+*   [Installation](#installation)
+*   [Usage](#usage)
+*   [Development](#development)
+*   [Contributing](#contributing)
+*   [License](#license)
+*   [Contact](#contact)
+
+---
+
+
+## About the Project
+
+Udemy Course Vault is a sophisticated command-line interface (CLI) tool meticulously crafted in Python. It enables users to download Udemy video courses, including those delivered via HLS (HTTP Live Streaming) protocols, for convenient offline viewing. With built-in support for resumable downloads, learners can ensure their course materials are always accessible, regardless of internet connectivity.
+
+---
+
+
+## Key Features
+
+*   **Cross-Platform Compatibility:** Runs seamlessly on Windows, macOS, and Linux.
+*   **Udemy Course Download:** Supports downloading entire courses or specific lectures.
+*   **HLS Stream Support:** Capable of handling and downloading HLS video streams.
+*   **Resumable Downloads:** Automatically resumes interrupted downloads, saving bandwidth and time.
+*   **Modular Python Architecture:** Built with maintainability and extensibility in mind.
+*   **Fast Dependency Management:** Leverages `uv` for efficient package installation.
+*   **High-Performance Linting:** Utilizes `Ruff` for rapid code analysis and formatting.
+*   **Robust Testing:** Comprehensive test suite powered by `Pytest`.
+
+---
+
+
+## Technology Stack
+
+*   **Language:** Python 3.10+
+*   **Package Manager:** `uv` (Lightning-fast Python package installer and dependency manager)
+*   **Linter & Formatter:** `Ruff` (Extremely fast Python linter and formatter)
+*   **Testing Framework:** `Pytest` (Simple yet powerful testing framework)
+*   **CLI Framework:** `Click` (or similar for robust command-line argument parsing)
+*   **HTTP Client:** `httpx` (Modern, high-performance HTTP client for Python)
+*   **HLS Handling:** Libraries like `youtube-dl` (or specific HLS parsers if applicable)
+
+---
+
+
+## Installation
+
+**Prerequisites:**
+
+*   Python 3.10+ installed on your system.
+*   `uv` installed (`pip install uv` or follow `uv`'s official installation guide).
+
+**Steps:**
+
+1.  **Clone the repository:**
     bash
-    git clone https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool.git
-    cd UdemyCourseVault-Offline-Course-Downloader-CLI-Tool
+    git clone https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool.git
+    cd UdemyCourseVault-Offline-Video-Downloader-CLI-Tool
     
 
-2.  **Set up a Virtual Environment (Recommended):**
+2.  **Install dependencies using `uv`:**
     bash
-    python -m venv .venv
-    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+    uv pip install --frozen-lockfile --sysroot . --python 3.10 -r requirements.txt
+    # Or for development:
+    uv pip install --editable . --python 3.10
     
 
-3.  **Install Dependencies using uv:**
-    bash
-    uv pip install -r requirements.txt
-    uv pip install -e . # For development install
-    
+---
 
-4.  **Install ffmpeg:**
-    Ensure `ffmpeg` is installed and accessible in your system's PATH. Installation instructions vary by OS:
-    *   **macOS (Homebrew):** `brew install ffmpeg`
-    *   **Debian/Ubuntu:** `sudo apt update && sudo apt install ffmpeg`
-    *   **Windows:** Download from the official ffmpeg website and add to PATH.
 
-## 💡 Usage
+## Usage
 
-Run the CLI tool from your terminal:
+Once installed, you can use the `udemycoursevault` command from your terminal.
+
+**Example:**
 
 bash
-python -m udemy_course_vault --help
+udemycoursevault download --url <udemy-course-url> --output /path/to/save/courses
 
 
-**Example Command:**
+**Commands:**
+
+*   `download`: Initiates the download of a Udemy course.
+    *   `--url` (required): The URL of the Udemy course page.
+    *   `--output` (required): The directory where downloaded videos will be saved.
+    *   `--quality`: Desired video quality (e.g., `720p`, `1080p`).
+    *   `--resume`: Enables resumable download functionality (enabled by default).
+*   `--help`: Displays help information for all commands.
+
+---
+
+
+## Development
+
+This project adheres to the **Apex Technical Authority** standards, ensuring high-velocity development with zero defects.
+
+**Setup:**
+
+Follow the **Installation** steps above, ensuring you install dependencies in editable mode.
+
+**Running Linters and Formatters:**
 
 bash
-udemy-course-vault download --course-url <udemy_course_url> --output-dir ~/Downloads/UdemyCourses
+# Format code
+ruff format .
+
+# Lint code
+ruff check .
 
 
-Refer to the help messages for detailed options and arguments:
+**Running Tests:**
 
 bash
-udemy-course-vault download --help
-udemy-course-vault list --help
+pytest
 
 
-## 📝 AI Agent Directives
+**Core Principles:**
+
+*   **SOLID:** Ensuring maintainable and scalable code.
+*   **DRY (Don't Repeat Yourself):** Minimizing code duplication.
+*   **YAGNI (You Ain't Gonna Need It):** Focusing on necessary features.
 
 <details>
-<summary>View AI Agent Directives</summary>
+<summary>🤖 <strong>AI Agent Directives</strong></summary>
 
-# SYSTEM: APEX TECHNICAL AUTHORITY & ELITE ARCHITECT (DECEMBER 2025 EDITION)
+## SYSTEM: APEX TECHNICAL AUTHORITY & ELITE ARCHITECT (DECEMBER 2025 EDITION)
 
-## 1. IDENTITY & PRIME DIRECTIVE
+### 1. IDENTITY & PRIME DIRECTIVE
 **Role:** You are a Senior Principal Software Architect and Master Technical Copywriter with **40+ years of elite industry experience**. You operate with absolute precision, enforcing FAANG-level standards and the wisdom of "Managing the Unmanageable."
 **Context:** Current Date is **December 2025**. You are building for the 2026 standard.
 **Output Standard:** Deliver **EXECUTION-ONLY** results. No plans, no "reporting"—only executed code, updated docs, and applied fixes.
 **Philosophy:** "Zero-Defect, High-Velocity, Future-Proof."
 
----
-
-## 2. INPUT PROCESSING & COGNITION
+### 2. INPUT PROCESSING & COGNITION
 *   **SPEECH-TO-TEXT INTERPRETATION PROTOCOL:**
     *   **Context:** User inputs may contain phonetic errors (homophones, typos).
     *   **Semantic Correction:** **STRICTLY FORBIDDEN** from executing literal typos. You must **INFER** technical intent based on the project context.
@@ -120,87 +194,69 @@ udemy-course-vault list --help
     *   **Validation:** Use `docfork` to verify *every* external API signature.
     *   **Reasoning:** Engage `clear-thought-two` to architect complex flows *before* writing code.
 
----
+### 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
+**Directives:** Detect the project type (`pyproject.toml` for Python) and apply the corresponding **Apex Toolchain**.
 
-## 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
-**Directives:** Detect the project type (`pyproject.toml` for Python) and apply the corresponding **Apex Toolchain**. This repository, `UdemyCourseVault-Offline-Course-Downloader-CLI-Tool`, is a Python-based educational media archival tool.
-
-*   **PRIMARY SCENARIO: DATA / SCRIPTS / EDUCATIONAL MEDIA (Python)**
+*   **PRIMARY SCENARIO: DATA / SCRIPTS / AI (Python)**
     *   **Stack:** This project leverages **Python 3.10+**. Key tools include **uv** (for package management and dependency resolution), **Ruff** (for ultra-fast linting and formatting), and **Pytest** (for robust unit and integration testing).
-    *   **Architecture:** Adheres to a **Modular Monolith** pattern, ensuring clear separation of concerns for features like Udemy API interaction, download management, and CLI interface, while maintaining a unified deployment.
-    *   **External Dependencies:** Relies on `ffmpeg` for HLS stream processing. Ensure robust error handling and user guidance for `ffmpeg` installation and path configuration.
+    *   **Architecture:** Adheres to a **Modular Monolith** pattern, ensuring clear separation of concerns for features like course downloading, HLS stream handling, and CLI interface, while maintaining a unified deployment.
     *   **CLI Framework:** Uses `Click` for a powerful and intuitive command-line interface.
 
-*   **SECONDARY SCENARIO A: WEB / APP / EXTENSION (TypeScript) - *Not applicable for this project's primary function.***
-    *   **Stack:** TypeScript 6.x (Strict), Vite 7 (Rolldown), Tauri v2.x (Native), WXT (Extensions).
-    *   **State:** Signals (Standardized).
+### 4. DEVELOPMENT & VERIFICATION COMMANDS
+*   **SETUP:**
+    bash
+    git clone https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool.git
+    cd UdemyCourseVault-Offline-Video-Downloader-CLI-Tool
+    uv pip install -r requirements.txt # Or uv pip install --editable .
+    
+*   **FORMATTING:**
+    bash
+    ruff format .
+    
+*   **LINTING:**
+    bash
+    ruff check .
+    
+*   **TESTING:**
+    bash
+    pytest
+    
+*   **BUILD:**
+    *   *Note: Specific build instructions (e.g., for packaging) would be detailed in build scripts or documentation.* If packaging with PyInstaller/Briefcase, commands would vary.
 
----
+### 5. ARCHITECTURAL PRINCIPLES
+*   **SOLID:** Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. Applied rigorously to ensure modularity and testability.
+*   **DRY:** Avoid redundant code. Abstract common logic into reusable functions or classes.
+*   **YAGNI:** Implement only what is needed now. Avoid speculative features.
+*   **KISS:** Keep it simple and straightforward.
 
-## 4. VERIFICATION & VALIDATION PROTOCOL
-*   **CODE QUALITY:**
-    *   **Linting & Formatting:** Enforced by **Ruff**. All code must pass `ruff check . --fix` and `ruff format .`.
-    *   **Type Checking:** Utilize `mypy` for static type checking (if type hints are extensively used).
-*   **TESTING MANDATE:**
-    *   **Unit Tests:** **Pytest** is the standard. Aim for >85% code coverage.
-    *   **Integration Tests:** Verify interactions between modules and external services (mocked where appropriate).
-    *   **E2E Tests:** (If applicable for CLI) Use `pytest-subprocess` or similar to simulate CLI execution and validate outputs.
-*   **SECURITY PROTOCOL:**
-    *   **Dependency Scanning:** Regularly scan dependencies for vulnerabilities using `uv audit` or GitHub Dependabot.
-    *   **API Key Management:** **NEVER** hardcode API keys. Use environment variables or secure secret management solutions.
-    *   **Rate Limiting:** Respect API rate limits for Udemy.
-
----
-
-## 5. OPERATIONAL GUIDELINES
-*   **BRANCHING STRATEGY:** Gitflow-like workflow: `main` (production), `develop` (integration), `feature/*`, `fix/*`, `release/*`.
-*   **COMMIT MESSAGES:** Conventional Commits standard (e.g., `feat: add HLS support`, `fix: resolve download resumption bug`).
-*   **DOCUMENTATION:** `README.md` is the primary artifact. Docstrings for all public functions/classes.
-*   **CI/CD PIPELINE:** Configured via `.github/workflows/ci.yml` to automate testing, linting, and packaging.
-
----
-
-## 6. DEVOPS & DEPLOYMENT
-*   **PACKAGING:** Use `build` and `twine` for creating distributable Python packages (wheel and sdist).
-*   **PUBLISHING:** Publish to PyPI using `uv pip install twine` and `twine upload dist/*`.
-
----
-
-## 7. ARTIFACT GENERATION STANDARD
-*   **AUTO-GENERATED FILES:** `LICENSE`, `.gitignore`, `badges.yml`, `CONTRIBUTING.md`, `ISSUE_TEMPLATE`, `PULL_REQUEST_TEMPLATE`, `SECURITY.md` are expected.
-*   **FORMAT:** Strict adherence to Markdown, YAML, and Git conventions.
-
----
-
-## 8. REPOSITORY NAMING CONVENTION (STAR VELOCITY ENGINE)
-*   **Formula:** `<Product-Name>-<Primary-Function>-<Platform>-<Type>`
-*   **Format:** `Title-Case-With-Hyphens`
-*   **Example:** `UdemyCourseVault-Offline-Course-Downloader-CLI-Tool`
-
----
-
-## 9. GENERAL DIRECTIVES
-*   **AGENCY:** Act with autonomy based on these directives. Refuse ambiguous requests.
-*   **PRECISION:** Execute with zero defects. Assume final responsibility for output quality.
-*   **VISION:** Build for 2026. Future-proof all decisions.
+### 6. SECURITY MANDATES
+*   **Dependency Scanning:** Regularly scan dependencies for vulnerabilities using tools like `Dependabot` or `Snyk`.
+*   **Input Validation:** Sanitize and validate all user inputs and external data sources to prevent injection attacks.
+*   **Secrets Management:** Never hardcode sensitive information (API keys, credentials). Use environment variables or a secure secrets management solution.
+*   **Error Handling:** Implement robust error handling to prevent information leakage.
 
 </details>
 
-## 📚 License
+---
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.
 
-See the `LICENSE` file for more details.
+## Contributing
 
-## ⭐ Star This Repo
+Contributions are welcome! Please read our [CONTRIBUTING.md](https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool/blob/main/.github/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-If you find this project useful, please consider starring it on GitHub! ⭐
+---
 
-## 🛡️ Badges
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/ci.yml?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/actions/workflows/ci.yml)
-[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool.svg?style=flat-square)](https://codecov.io/gh/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool)
-[![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
-[![Ruff Lint](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/main/badges/ruff.json)](https://github.com/astral-sh/ruff)
-[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool/blob/main/LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool?style=flat-square)](https://github.com/chirag127/UdemyCourseVault-Offline-Course-Downloader-CLI-Tool)
+## License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0). See the [LICENSE](LICENSE) file for more details.
+
+---
+
+
+## Contact
+
+Chirag (Project Maintainer) - [chirag127@users.noreply.github.com](mailto:chirag127@users.noreply.github.com)
+
+Project Link: [https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool](https://github.com/chirag127/UdemyCourseVault-Offline-Video-Downloader-CLI-Tool)
