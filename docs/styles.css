@@ -1,0 +1,101 @@
+/* Glassmorphism UI */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 2rem;
+    margin: 1rem;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+}
+
+header.glass {
+    margin-top: 2rem;
+}
+
+nav {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    margin: 0.5rem 0;
+    color: #0d47a1;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #0d47a1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+footer.footer {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+footer.footer a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+footer.footer a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+pre {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}

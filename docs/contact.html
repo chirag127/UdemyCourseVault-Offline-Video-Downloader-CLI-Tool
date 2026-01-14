@@ -1,0 +1,240 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - UdemyCourseVault | Offline Course Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg">
+    <!-- Navigation -->
+    <nav class="glass sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-vault text-white text-2xl"></i>
+                <span class="text-white font-bold text-xl">UdemyCourseVault</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-white hover:text-purple-200">Home</a>
+                <a href="about.html" class="nav-link text-white hover:text-purple-200">About</a>
+                <a href="features.html" class="nav-link text-white hover:text-purple-200">Features</a>
+                <a href="docs.html" class="nav-link text-white hover:text-purple-200">Documentation</a>
+                <a href="contact.html" class="nav-link text-white hover:text-purple-200">Contact</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+            <a href="index.html" class="block py-2 text-white hover:text-purple-200">Home</a>
+            <a href="about.html" class="block py-2 text-white hover:text-purple-200">About</a>
+            <a href="features.html" class="block py-2 text-white hover:text-purple-200">Features</a>
+            <a href="docs.html" class="block py-2 text-white hover:text-purple-200">Documentation</a>
+            <a href="contact.html" class="block py-2 text-white hover:text-purple-200">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="px-6 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 animate-float">
+                Get in Touch
+            </h1>
+            <p class="text-xl text-purple-100 mb-8">
+                Have questions about UdemyCourseVault? We're here to help!
+            </p>
+            <div class="glass rounded-2xl p-8 hover-scale">
+                <p class="text-white text-lg leading-relaxed">
+                    Whether you need support, want to report a bug, or have suggestions for improvement, 
+                    feel free to reach out. I'm committed to making UdemyCourseVault the best offline course 
+                    downloader for the community.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="px-6 pb-20">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+            <!-- Contact Form -->
+            <div class="glass rounded-2xl p-8 hover-scale">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>
+                    Send a Message
+                </h2>
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label class="block text-purple-100 mb-2">Name</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-lg glass-dark text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label class="block text-purple-100 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-lg glass-dark text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="your@email.com" required>
+                    </div>
+                    <div>
+                        <label class="block text-purple-100 mb-2">Subject</label>
+                        <select class="w-full px-4 py-3 rounded-lg glass-dark text-white focus:outline-none focus:ring-2 focus:ring-purple-400">
+                            <option>General Inquiry</option>
+                            <option>Technical Support</option>
+                            <option>Bug Report</option>
+                            <option>Feature Request</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-purple-100 mb-2">Message</label>
+                        <textarea rows="5" class="w-full px-4 py-3 rounded-lg glass-dark text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="space-y-6">
+                <!-- Direct Contact -->
+                <div class="glass rounded-2xl p-8 hover-scale">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-address-card mr-3"></i>
+                        Direct Contact
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center text-purple-100">
+                            <i class="fas fa-user-circle mr-4 text-purple-300"></i>
+                            <div>
+                                <p class="text-sm text-purple-200">Developer</p>
+                                <p class="font-semibold">Chirag Singhal</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-purple-100">
+                            <i class="fas fa-envelope mr-4 text-purple-300"></i>
+                            <div>
+                                <p class="text-sm text-purple-200">Email</p>
+                                <a href="mailto:chiragsinghal127@gmail.com" class="font-semibold hover:text-white transition-colors">chiragsinghal127@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-purple-100">
+                            <i class="fas fa-map-marker-alt mr-4 text-purple-300"></i>
+                            <div>
+                                <p class="text-sm text-purple-200">Location</p>
+                                <p class="font-semibold">Bhubaneswar, Odisha, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="glass rounded-2xl p-8 hover-scale">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-share-alt mr-3"></i>
+                        Connect Online
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="https://github.com/chirag127" target="_blank" class="flex items-center justify-center py-3 px-4 glass-dark rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                            <i class="fab fa-github mr-2"></i>
+                            GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/chirag-singhal1" target="_blank" class="flex items-center justify-center py-3 px-4 glass-dark rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                            <i class="fab fa-linkedin mr-2"></i>
+                            LinkedIn
+                        </a>
+                        <a href="https://buymeacoffee.com/WhyIsWhen" target="_blank" class="flex items-center justify-center py-3 px-4 glass-dark rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                            <i class="fas fa-coffee mr-2"></i>
+                            Buy Me Coffee
+                        </a>
+                        <a href="mailto:chiragsinghal127@gmail.com" class="flex items-center justify-center py-3 px-4 glass-dark rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Response Time -->
+                <div class="glass rounded-2xl p-6">
+                    <div class="flex items-center text-purple-100">
+                        <i class="fas fa-clock mr-3 text-purple-300 text-xl"></i>
+                        <div>
+                            <p class="font-semibold">Response Time</p>
+                            <p class="text-sm">Usually within 24-48 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="px-6 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="glass rounded-lg p-6">
+                    <button class="w-full text-left text-white font-semibold flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <span>Is UdemyCourseVault free to use?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden mt-4 text-purple-100">
+                        Yes, UdemyCourseVault is completely free and open-source. You can download, use, and modify it as per your needs.
+                    </div>
+                </div>
+                <div class="glass
