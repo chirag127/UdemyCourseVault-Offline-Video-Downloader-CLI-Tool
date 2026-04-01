@@ -19,28 +19,23 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
 
+import argparse
 import os
 import sys
-import argparse
 
 import udemy
-from udemy.logger import logger
-from udemy.getpass import getpass
-from udemy.vtt2srt import WebVtt2Srt
-from udemy.progress import ProgressBar
 from udemy.colorized.banner import banner
-from udemy.utils import (
-    to_configs,
-    to_filepath,
-    load_configs,
-    to_human_readable,
-    extract_url_or_courses,
-)
+from udemy.getpass import getpass
+from udemy.logger import logger
+from udemy.progress import ProgressBar
+from udemy.utils import (extract_url_or_courses, load_configs, to_configs,
+                         to_filepath, to_human_readable)
+from udemy.vtt2srt import WebVtt2Srt
 
 
 class Udemy(WebVtt2Srt, ProgressBar):

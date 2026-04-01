@@ -11,14 +11,14 @@ License : MIT
 Copyright (c) 2018-2025 Nasir Khan (r0ot h3x49)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
-Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
 and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
@@ -29,8 +29,8 @@ import sys
 if os.name == "nt":
     from msvcrt import getch as _win_getch
 else:
-    import tty
     import termios
+    import tty
 
 
 class GetPass(object):
@@ -45,13 +45,13 @@ class GetPass(object):
         return ch
 
     def getuser(self, prompt="Username : "):
-        """Prompt for Username """
+        """Prompt for Username"""
         sys.stdout.write(f"{prompt}")
         sys.stdout.flush()
         return input()
 
     def get_access_token(self, prompt="Access Token : "):
-        """Prompt for Access Token """
+        """Prompt for Access Token"""
         sys.stdout.write(f"{prompt}")
         sys.stdout.flush()
         access_token = input()
@@ -84,7 +84,11 @@ class GetPass(object):
                 elif ord(c) == 224:
                     c = _win_getch()
                 else:
-                    pw = pw + c.decode("utf-8") if sys.version_info[:2] >= (3, 0) else pw + c
+                    pw = (
+                        pw + c.decode("utf-8")
+                        if sys.version_info[:2] >= (3, 0)
+                        else pw + c
+                    )
                     sys.stdout.write("*")
                     sys.stdout.flush()
             elif ord(c) == 127:

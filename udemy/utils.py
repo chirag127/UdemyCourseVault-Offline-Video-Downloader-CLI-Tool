@@ -12,26 +12,19 @@ License : MIT
 Copyright (c) 2018-2025 Nasir Khan (r0ot h3x49)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
-Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
 and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
 
-from udemy.compat import (
-    re,
-    os,
-    sys,
-    json,
-    NO_DEFAULT,
-    compat_HTMLParser,
-)
+from udemy.compat import NO_DEFAULT, compat_HTMLParser, json, os, re, sys
 from udemy.logger import logger
 
 
@@ -70,11 +63,17 @@ def to_human_readable(content_length):
     hr = ""
     if content_length <= 1048576.00:
         size = round(float(content_length) / 1024.00, 2)
-        sz = format(size if size < 1024.00 else size / 1024.00, ".2f",)
+        sz = format(
+            size if size < 1024.00 else size / 1024.00,
+            ".2f",
+        )
         in_MB = "KB" if size < 1024.00 else "MB"
     else:
         size = round(float(content_length) / 1048576, 2)
-        sz = format(size if size < 1024.00 else size / 1024.00, ".2f",)
+        sz = format(
+            size if size < 1024.00 else size / 1024.00,
+            ".2f",
+        )
         in_MB = "MB " if size < 1024.00 else "GB "
     hr = f"{sz}{in_MB}"
     return hr
@@ -203,6 +202,7 @@ def unescapeHTML(s):
         # Python 3.9.0 HTML_Parser unescape attribute deprecated
         # https://github.com/pypa/setuptools/pull/1788/files
         import html
+
         data = html.unescape(s)
     return data
 
@@ -314,9 +314,12 @@ def js_to_json(code):
         if v[0] in ("'", '"'):
             v = re.sub(
                 r'(?s)\\.|"',
-                lambda m: {'"': '\\"', "\\'": "'", "\\\n": "", "\\x": "\\u00",}.get(
-                    m.group(0), m.group(0)
-                ),
+                lambda m: {
+                    '"': '\\"',
+                    "\\'": "'",
+                    "\\\n": "",
+                    "\\x": "\\u00",
+                }.get(m.group(0), m.group(0)),
                 v[1:-1],
             )
 
@@ -335,9 +338,7 @@ def js_to_json(code):
         [a-zA-Z_][.a-zA-Z_0-9]*|
         \b(?:0[xX][0-9a-fA-F]+|0+[0-7]+)(?:{skip}:)?|
         [0-9]+(?={skip}:)
-        """.format(
-            comment=COMMENT_RE, skip=SKIP_RE
-        ),
+        """.format(comment=COMMENT_RE, skip=SKIP_RE),
         fix_kv,
         code,
     )

@@ -11,20 +11,21 @@ License : MIT
 Copyright (c) 2018-2025 Nasir Khan (r0ot h3x49)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
-Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
 and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-import subprocess
-from udemy.compat import re, time
 
+import subprocess
+
+from udemy.compat import re, time
 # from udemy.logger import logger
 from udemy.progress import progress
 
@@ -86,8 +87,8 @@ class FFMPeg:
         )
 
     def _prepare_time_str(self, secs):
-        (mins, secs) = divmod(secs, 60)
-        (hours, mins) = divmod(mins, 60)
+        mins, secs = divmod(secs, 60)
+        hours, mins = divmod(mins, 60)
         if hours > 99:
             time_str = "--:--:--"
         if hours == 0:
@@ -125,8 +126,8 @@ class FFMPeg:
             rate = 0
             eta = 0
         rate = format(speed if speed < 1024.00 else speed / 1024.00, ".2f")
-        (mins, secs) = divmod(eta, 60)
-        (hours, mins) = divmod(mins, 60)
+        mins, secs = divmod(eta, 60)
+        hours, mins = divmod(mins, 60)
         if hours > 99:
             eta = "--:--:--"
         if hours == 0:
@@ -166,8 +167,8 @@ class FFMPeg:
         download_speed = 0
         try:
             with subprocess.Popen(
-                        command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-                    ) as proc:
+                command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            ) as proc:
                 while active:
                     elapsed = time.time() - t0
                     try:

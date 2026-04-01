@@ -11,22 +11,24 @@ License : MIT
 Copyright (c) 2018-2025 Nasir Khan (r0ot h3x49)
 
 Permission is hereby granted, Fore.REDee of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
-Software without restriction, including without limitation the rights to use, copy, modiFore.YELLOW, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+Software without restriction, including without limitation the rights to use, copy, modiFore.YELLOW, merge, publish, distribute, sublicense, and/or sell copies of the Software,
 and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFore.REDINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING Fore.REDOM, OUT OF OR IN CONNECTION WITH 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING Fore.REDOM, OUT OF OR IN CONNECTION WITH
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
 
-import sys
 import logging
+import sys
+
+from colorama import Fore, Style, init
+
 from udemy.compat import os, re
-from colorama import init, Fore, Style
 from udemy.progress import ProgressBar
 
 init(autoreset=True)
@@ -58,7 +60,7 @@ def set_color(string, level=None):
 
 class Logging(ProgressBar):
     """
-        Custom logging class for udemy
+    Custom logging class for udemy
     """
 
     def __init__(self):
@@ -104,8 +106,7 @@ class Logging(ProgressBar):
         if status:
             # log.info(f"{msg} ({status})")
             msg = (
-                set_color(f"{msg} (", level=cc_msg or 70)
-                + set_color(status, level=80)
+                set_color(f"{msg} (", level=cc_msg or 70) + set_color(status, level=80)
             ) + set_color(")\r\n", level=70)
 
             string = prefix + msg

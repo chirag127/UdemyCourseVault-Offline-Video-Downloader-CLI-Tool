@@ -12,43 +12,27 @@ License : MIT
 Copyright (c) 2018-2025 Nasir Khan (r0ot h3x49)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
-Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
 and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
 
-
 from udemy.auth import UdemyAuth
-from udemy.utils import (
-    parse_json,
-    js_to_json,
-    search_regex,
-    unescapeHTML,
-    extract_cookie_string,
-)
-from udemy.compat import (
-    re,
-    sys,
-    time,
-    m3u8,
-    encoding,
-    conn_error,
-    COURSE_URL,
-    MY_COURSES_URL,
-    COURSE_SEARCH,
-    COLLECTION_URL,
-    SUBSCRIBED_COURSES,
-)
-from udemy.sanitize import slugify, sanitize, SLUG_OK
-from udemy.logger import logger
+from udemy.compat import (COLLECTION_URL, COURSE_SEARCH, COURSE_URL,
+                          MY_COURSES_URL, SUBSCRIBED_COURSES, conn_error,
+                          encoding, m3u8, re, sys, time)
 from udemy.getpass import getpass
+from udemy.logger import logger
+from udemy.sanitize import SLUG_OK, sanitize, slugify
+from udemy.utils import (extract_cookie_string, js_to_json, parse_json,
+                         search_regex, unescapeHTML)
 
 
 class Udemy:
@@ -801,10 +785,7 @@ class Udemy:
                     _udemy["chapters"][counter]["lectures_count"] = len(lectures)
             _udemy["total_chapters"] = len(_udemy["chapters"])
             _udemy["total_lectures"] = sum(
-                entry.get("lectures_count", 0)
-                for entry in _udemy["chapters"]
-                if entry
+                entry.get("lectures_count", 0) for entry in _udemy["chapters"] if entry
             )
-
 
         return _udemy
